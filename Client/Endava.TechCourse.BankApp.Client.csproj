@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Endava.TechCourseBankApp.Shared.csproj" />
+    <ProjectReference Include="..\Shared\Endava.TechCourse.BankApp.Shared.csproj" />
   </ItemGroup>
 
 </Project>
