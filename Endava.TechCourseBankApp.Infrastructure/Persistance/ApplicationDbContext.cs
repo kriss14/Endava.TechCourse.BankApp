@@ -11,9 +11,9 @@ namespace Endava.TechCourseBankApp.Infrastructure.Persistance
         //public DbSet<Wallet> Wallets { get; set; }
         //public DbSet<Currency> Currencies { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-        }
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    base.OnModelCreating(modelBuilder);
+        //}
     }
 }
