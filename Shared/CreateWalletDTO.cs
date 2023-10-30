@@ -1,8 +1,8 @@
-﻿using Endava.TechCourseBankApp.Domain.Common;
+﻿using Endava.TechCourse.BankApp.Domain.Models;
 
-namespace Endava.TechCourse.BankApp.Domain.Models
+namespace Endava.TechCourse.BankApp.Shared
 {
-    public class Wallet : BaseEntity
+    public class CreateWalletDTO
     {
         public string Type { get; set; }
         public decimal Amount { get; set; }

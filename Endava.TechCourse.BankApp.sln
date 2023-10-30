@@ -3,13 +3,27 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Endava.TechCourseBankApp.Server", "Server\Endava.TechCourseBankApp.Server.csproj", "{6A640E30-7EC0-4B74-9B63-6F45089B6E15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Endava.TechCourse.BankApp.Server", "Server\Endava.TechCourse.BankApp.Server.csproj", "{6A640E30-7EC0-4B74-9B63-6F45089B6E15}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3567C071-0E48-44D6-AD42-743ED35163CA} = {3567C071-0E48-44D6-AD42-743ED35163CA}
+	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Endava.TechCourseBankApp.Client", "Client\Endava.TechCourseBankApp.Client.csproj", "{C0D15829-EF46-4906-832A-8361ACD67313}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Endava.TechCourse.BankApp.Client", "Client\Endava.TechCourse.BankApp.Client.csproj", "{C0D15829-EF46-4906-832A-8361ACD67313}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DFE85AD0-3C20-4C49-BD4D-24184095AF05} = {DFE85AD0-3C20-4C49-BD4D-24184095AF05}
+	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Endava.TechCourseBankApp.Shared", "Shared\Endava.TechCourseBankApp.Shared.csproj", "{C1662C5A-5871-40C7-8EED-71ABDD3A7BC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Endava.TechCourse.BankApp.Shared", "Shared\Endava.TechCourse.BankApp.Shared.csproj", "{C1662C5A-5871-40C7-8EED-71ABDD3A7BC1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DFE85AD0-3C20-4C49-BD4D-24184095AF05} = {DFE85AD0-3C20-4C49-BD4D-24184095AF05}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Endava.TechCourseBankApp.Domain", "Endava.TechCourseBankApp.Domain\Endava.TechCourseBankApp.Domain.csproj", "{DFE85AD0-3C20-4C49-BD4D-24184095AF05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Endava.TechCourse.BankApp.Domain", "Endava.TechCourseBankApp.Domain\Endava.TechCourse.BankApp.Domain.csproj", "{DFE85AD0-3C20-4C49-BD4D-24184095AF05}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Endava.TechCourse.BankApp.Infrastructure", "Endava.TechCourseBankApp.Infrastructure\Endava.TechCourse.BankApp.Infrastructure.csproj", "{3567C071-0E48-44D6-AD42-743ED35163CA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DFE85AD0-3C20-4C49-BD4D-24184095AF05} = {DFE85AD0-3C20-4C49-BD4D-24184095AF05}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +47,10 @@ Global
 		{DFE85AD0-3C20-4C49-BD4D-24184095AF05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFE85AD0-3C20-4C49-BD4D-24184095AF05}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFE85AD0-3C20-4C49-BD4D-24184095AF05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3567C071-0E48-44D6-AD42-743ED35163CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3567C071-0E48-44D6-AD42-743ED35163CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3567C071-0E48-44D6-AD42-743ED35163CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3567C071-0E48-44D6-AD42-743ED35163CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

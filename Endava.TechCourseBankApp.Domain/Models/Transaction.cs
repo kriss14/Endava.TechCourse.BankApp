@@ -1,6 +1,6 @@
 ﻿using Endava.TechCourseBankApp.Domain.Common;
 
-namespace Endava.TechCourseBankApp.Domain.Models
+namespace Endava.TechCourse.BankApp.Domain.Models
 {
     public class Transaction : BaseEntity
     {
