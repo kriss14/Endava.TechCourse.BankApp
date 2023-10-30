@@ -9,8 +9,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Endava.TechCourse.BankApp.S
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Endava.TechCourse.BankApp.Client", "Client\Endava.TechCourse.BankApp.Client.csproj", "{C0D15829-EF46-4906-832A-8361ACD67313}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DFE85AD0-3C20-4C49-BD4D-24184095AF05} = {DFE85AD0-3C20-4C49-BD4D-24184095AF05}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Endava.TechCourse.BankApp.Shared", "Shared\Endava.TechCourse.BankApp.Shared.csproj", "{C1662C5A-5871-40C7-8EED-71ABDD3A7BC1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DFE85AD0-3C20-4C49-BD4D-24184095AF05} = {DFE85AD0-3C20-4C49-BD4D-24184095AF05}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Endava.TechCourse.BankApp.Domain", "Endava.TechCourseBankApp.Domain\Endava.TechCourse.BankApp.Domain.csproj", "{DFE85AD0-3C20-4C49-BD4D-24184095AF05}"
 EndProject

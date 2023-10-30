@@ -1,0 +1,55 @@
+﻿@page "/create-wallet"
+@inject HttpClient httpClient
+@inject NavigationManager navManager
+@using Endava.TechCourse.BankApp.Domain.Models
+
+<h3>Create Wallet</h3>
+<br />
+<br />
+<MudText>New Wallet: </MudText>
+<MudTextField T="string" @bind-Value="wallet.Type" Label="Type" />
+<MudTextField T="decimal" @bind-Value="wallet.Amount" Label="Amount" />
+<MudTextField T="string" @bind-Value="wallet.Currency.Name" Label="Name" />
+<MudTextField T="string" @bind-Value="wallet.Currency.CurrencyCode" Label="Currency Code" />
+<MudTextField T="decimal" @bind-Value="wallet.Currency.ChangeRate" Label="Change Rate" />
+<MudButton Variant=Variant.Outlined Color=Color.Primary OnClick="AddWallet">Add</MudButton>
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <MudAlert>@errorMessage</MudAlert>
+}
+
+@code {
+    private Currency currency = new Currency();
+    private CreateWalletDTO wallet = new CreateWalletDTO
+        {
+            Type = "",      
+            Amount = 0,       
+            Currency = new Currency
+            {
+                Name = "",       
+                ChangeRate = 0,       
+                CurrencyCode = ""        
+            }
+        };
+    private string errorMessage;
+
+    public async Task AddWallet()
+    {
+        if (string.IsNullOrEmpty(wallet.Type))
+            errorMessage = "Wallet Type has to be populated.";
+        else if (wallet.Amount <= 0)
+            errorMessage = "Wallet Amount has to be populated with a value greater than zero.";
+        else
+        {
+            var result = await this.httpClient.PostAsJsonAsync("api/wallet/", wallet);
+
+            if (!result.IsSuccessStatusCode)
+            {
+                errorMessage = "An error occured on server side. Please contact the administrator.";
+            }
+        }
+
+        navManager.NavigateTo("/wallets");
+    }
+}

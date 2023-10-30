@@ -1,4 +1,4 @@
-﻿using Endava.TechCourseBankApp.Infrastructure.Persistance;
+﻿using Endava.TechCourse.BankApp.Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

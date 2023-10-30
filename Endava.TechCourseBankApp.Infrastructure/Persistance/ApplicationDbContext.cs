@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Endava.TechCourse.BankApp.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace Endava.TechCourseBankApp.Infrastructure.Persistance
+namespace Endava.TechCourse.BankApp.Infrastructure.Persistance
 {
     public class ApplicationDbContext : DbContext
     {
@@ -8,12 +9,14 @@ namespace Endava.TechCourseBankApp.Infrastructure.Persistance
         {
         }
 
-        //public DbSet<Wallet> Wallets { get; set; }
-        //public DbSet<Currency> Currencies { get; set; }
+        public DbSet<Wallet> Wallets { get; set; }
+        public DbSet<Currency> Currencies { get; set; }
 
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    base.OnModelCreating(modelBuilder);
-        //}
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Wallet>().HasKey(w => w.Id);
+            modelBuilder.Entity<Currency>().HasKey(c => c.Id);
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

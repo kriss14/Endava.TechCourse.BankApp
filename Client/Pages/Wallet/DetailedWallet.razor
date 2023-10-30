@@ -1,0 +1,64 @@
+﻿@page "/detailed-wallet"
+@using MudBlazor
+@using Endava.TechCourse.BankApp.Domain;
+@using Endava.TechCourse.BankApp.Shared;
+@inject HttpClient httpClient
+
+<h3>Wallet</h3>
+<br />
+<br />
+<input @bind="type" />
+<MudButton @onclick="RetrieveWallet">Retrieve</MudButton>
+
+@if (wallets == null || !wallets.Any())
+{
+    <h5>No wallets to be displayed yet...</h5>
+}
+else
+{
+    <MudTable Items="@wallets">
+        <HeaderContent>
+            <MudTh>Id</MudTh>
+            <MudTh>Create Date</MudTh>
+            <MudTh>Type</MudTh>
+            <MudTh>Amount</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd>@context.Id</MudTd>
+            <MudTd>@context.CreateDate</MudTd>
+            <MudTd>@context.Type</MudTd>
+            <MudTd>@context.Amount</MudTd>
+        </RowTemplate>
+    </MudTable>
+}
+@code {
+    private List<GetWalletDTO> wallets;
+    private string type;
+    private async void RetrieveWallet()
+    {
+       
+        string retrievedText = type;
+        
+        try
+        {
+            wallets = await this.httpClient.GetFromJsonAsync<List<GetWalletDTO>>($"api/wallet/{type}/");
+
+            if (wallets != null)
+            {
+            }
+            else
+            {
+                
+            }
+        }
+        catch (Exception ex)
+        {
+            
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+    }
+}
