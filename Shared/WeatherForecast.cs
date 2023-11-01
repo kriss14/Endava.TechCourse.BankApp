@@ -1,4 +1,4 @@
-namespace Endava.TechCourseBankApp.Shared
+namespace Endava.TechCourse.BankApp.Shared
 {
     public class WeatherForecast
     {

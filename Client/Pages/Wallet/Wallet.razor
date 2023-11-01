@@ -1,61 +1,37 @@
-﻿@page "/wallets"
-@using MudBlazor
-@using Endava.TechCourse.BankApp.Domain;
-@using Endava.TechCourse.BankApp.Shared;
-@inject HttpClient httpClient
+﻿@page "/wallet"
+@inject HttpClient HttpClient
+@inject NavigationManager NavigationManager
 
-<h3>Wallet</h3>
-<br />
-<br />
-<MudButton ButtonType="ButtonType.Button" Color="Color.Success"  @onclick="NavigateToCreateWalletPage">Go to create wallet</MudButton>
-@if(wallets == null || !wallets.Any())
-{
-    <h5>No wallets to be displayed yet...</h5>
-}
-else
-{
-    <MudTable Items="@wallets">
-        <HeaderContent>
-            <MudTh>Id</MudTh>
-            <MudTh>Create Date</MudTh>
-            <MudTh>Type</MudTh>
-            <MudTh>Amount</MudTh>
-            @* <MudTh>Name</MudTh>
-            <MudTh>CurrencyCode</MudTh>
-            <MudTh>ChangeRate</MudTh> *@
-        </HeaderContent>
-        <RowTemplate>
-            <MudTd>@context.Id</MudTd>
-            <MudTd>@context.CreateDate</MudTd>
-            <MudTd>@context.Type</MudTd>
-            <MudTd>@context.Amount</MudTd>
-@*             <MudTd>@context.Currency.Name</MudTd>
-            <MudTd>@context.Currency.CurrencyCode</MudTd>
-            <MudTd>@context.Currency.ChangeRate</MudTd> *@
-        </RowTemplate>
-    </MudTable>
-}
+<PageTitle>All wallets</PageTitle>
+
+<MudTable Items="@wallets" T="WalletDTO" OnRowClick="OnRowClick">
+    <ToolBarContent>
+        <MudText Typo="Typo.h6">All wallets</MudText>
+        <MudSpacer />
+        <MudIconButton Href="/wallet/create_wallet" Icon="@Icons.Material.Filled.Add" aria-label="create wallet"></MudIconButton>
+    </ToolBarContent>
+    <HeaderContent>
+        <MudTh>Type</MudTh>
+        <MudTh>Amount</MudTh>
+        <MudTh>Currency</MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd>@context.Type</MudTd>
+        <MudTd>@context.Amount</MudTd>
+        <MudTd>@context.Currency</MudTd>
+    </RowTemplate>
+</MudTable>
 
 @code {
-    private List<WalletDTO> wallets;
-    [Inject]
-    private NavigationManager NavigationManager { get; set; }
+    List<WalletDTO> wallets;
 
-    private void NavigateToCreateWalletPage()
+    void OnRowClick(TableRowClickEventArgs<WalletDTO> args)
     {
-        NavigationManager.NavigateTo("/create-wallet");
+        NavigationManager.NavigateTo("/wallet/" + args.Item.Id);
     }
 
     protected override async Task OnInitializedAsync()
     {
-        await GetWallets();
-        StateHasChanged();
-
-        await base.OnInitializedAsync();
-    }
-
-    public async Task GetWallets()
-    {
-        wallets = await this.httpClient.GetFromJsonAsync<List<WalletDTO>>("api/wallet/");
+        wallets = await HttpClient.GetFromJsonAsync<List<WalletDTO>>($"https://localhost:7100/api/wallet/getwallets");
     }
 }

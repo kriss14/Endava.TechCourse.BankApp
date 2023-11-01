@@ -1,4 +1,4 @@
-namespace Endava.TestCourse.BankApp.Tests
+namespace Endava.TechCourse.BankApp.Test
 {
     public class Tests
     {

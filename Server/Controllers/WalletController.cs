@@ -1,5 +1,5 @@
 ﻿using Endava.TechCourse.BankApp.Domain.Models;
-using Endava.TechCourse.BankApp.Infrastructure.Persistance;
+using Endava.TechCourse.BankApp.Infrastracture.Persistance;
 using Endava.TechCourse.BankApp.Shared;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,11 +10,12 @@ namespace Endava.TechCourse.BankApp.Server.Controllers
     [ApiController]
     public class WalletController : ControllerBase
     {
-        private readonly ApplicationDbContext _dbcontext;
+        private readonly ApplicationDbContext _context;
 
         public WalletController(ApplicationDbContext dbContext)
         {
-            _dbcontext = dbContext;
+            ArgumentNullException.ThrowIfNull(dbContext);
+            _context = dbContext;
         }
 
         [HttpPost]
@@ -26,48 +27,54 @@ namespace Endava.TechCourse.BankApp.Server.Controllers
                 Amount = createWalletDTO.Amount,
                 Currency = new Currency
                 {
-                    Name = "Euro",
-                    CurrencyCode = "EUR",
-                    ChangeRate = 20
+                    Name = createWalletDTO.CurrencyName,
+                    CurrencyCode = createWalletDTO.CurrencyName,
+                    CurrencyRate = createWalletDTO.CurrencyRate,
                 }
             };
-            _dbcontext.Wallets.Add(wallet);
-            _dbcontext.SaveChanges();
-
+            _context.Wallets.Add(wallet);
+            _context.SaveChanges();
             return Ok();
         }
 
-        [HttpGet]
-        [Route("getwallets")]
+        [HttpGet("{Id}")]
+        public ActionResult<WalletDTO> GetWalletDetails(Guid Id)
+        {
+            var wallet = _context.Wallets.Include(x => x.Currency).FirstOrDefault(x => x.Id == Id);
+
+            if (wallet == null)
+            {
+                return NotFound();
+            }
+
+            var dto = new WalletDTO()
+            {
+                Id = wallet.Id.ToString(),
+                Currency = wallet.Currency.Name,
+                Type = wallet.Type,
+                Amount = wallet.Amount,
+            };
+            return Ok(dto);
+        }
+
+        [HttpGet("getwallets")]
         public async Task<List<WalletDTO>> GetWallets()
         {
-            var wallets = await _dbcontext.Wallets.Include(x => x.Currency).ToListAsync();
-
+            var wallets = await _context.Wallets.Include(x => x.Currency).ToListAsync();
             var dtos = new List<WalletDTO>();
 
             foreach (var wallet in wallets)
             {
                 var dto = new WalletDTO()
                 {
-                    Id = wallet.Id,
-                    Currency = wallet.Currency,
+                    Id = wallet.Id.ToString(),
+                    Currency = wallet.Currency.Name,
                     Type = wallet.Type,
                     Amount = wallet.Amount,
                 };
-
                 dtos.Add(dto);
             }
-
             return dtos;
-        }
-
-        [HttpGet("{type}")]
-        public ActionResult GetWallet(string type)
-        {
-            var walletsDomain = _dbcontext.Wallets.ToList();
-            var wallet = _dbcontext.Wallets.FirstOrDefault(item => item.Type == type);
-
-            return Ok(wallet);
         }
     }
 }
