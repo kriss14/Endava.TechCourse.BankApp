@@ -1,0 +1,61 @@
+﻿@page "/wallets"
+@using MudBlazor
+@using Endava.TechCourse.BankApp.Domain;
+@using Endava.TechCourse.BankApp.Shared;
+@inject HttpClient httpClient
+
+<h3>Wallet</h3>
+<br />
+<br />
+<MudButton ButtonType="ButtonType.Button" Color="Color.Success"  @onclick="NavigateToCreateWalletPage">Go to create wallet</MudButton>
+@if(wallets == null || !wallets.Any())
+{
+    <h5>No wallets to be displayed yet...</h5>
+}
+else
+{
+    <MudTable Items="@wallets">
+        <HeaderContent>
+            <MudTh>Id</MudTh>
+            <MudTh>Create Date</MudTh>
+            <MudTh>Type</MudTh>
+            <MudTh>Amount</MudTh>
+            @* <MudTh>Name</MudTh>
+            <MudTh>CurrencyCode</MudTh>
+            <MudTh>ChangeRate</MudTh> *@
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd>@context.Id</MudTd>
+            <MudTd>@context.CreateDate</MudTd>
+            <MudTd>@context.Type</MudTd>
+            <MudTd>@context.Amount</MudTd>
+@*             <MudTd>@context.Currency.Name</MudTd>
+            <MudTd>@context.Currency.CurrencyCode</MudTd>
+            <MudTd>@context.Currency.ChangeRate</MudTd> *@
+        </RowTemplate>
+    </MudTable>
+}
+
+@code {
+    private List<WalletDTO> wallets;
+    [Inject]
+    private NavigationManager NavigationManager { get; set; }
+
+    private void NavigateToCreateWalletPage()
+    {
+        NavigationManager.NavigateTo("/create-wallet");
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetWallets();
+        StateHasChanged();
+
+        await base.OnInitializedAsync();
+    }
+
+    public async Task GetWallets()
+    {
+        wallets = await this.httpClient.GetFromJsonAsync<List<WalletDTO>>("api/wallet/");
+    }
+}

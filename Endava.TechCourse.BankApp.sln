@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Endava.TechCourse.BankApp.I
 		{DFE85AD0-3C20-4C49-BD4D-24184095AF05} = {DFE85AD0-3C20-4C49-BD4D-24184095AF05}
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Endava.TechCourse.BankApp.Test", "Endava.TechCourse.BankApp.Test\Endava.TechCourse.BankApp.Test.csproj", "{A7E33759-DDCE-4138-B4F3-8F44C3D61E59}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{3567C071-0E48-44D6-AD42-743ED35163CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3567C071-0E48-44D6-AD42-743ED35163CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3567C071-0E48-44D6-AD42-743ED35163CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7E33759-DDCE-4138-B4F3-8F44C3D61E59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7E33759-DDCE-4138-B4F3-8F44C3D61E59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7E33759-DDCE-4138-B4F3-8F44C3D61E59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7E33759-DDCE-4138-B4F3-8F44C3D61E59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
