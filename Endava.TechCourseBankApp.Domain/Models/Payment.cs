@@ -1,8 +1,8 @@
 ﻿using Endava.TechCourseBankApp.Domain.Common;
 
-namespace Endava.TechCourse.BankApp.Domain.Models
+namespace Endava.TechCourseBankApp.Domain.Models
 {
-    public class Payment : BaseEntity
+    public class Payment: BaseEntity
     {
         public int PaymentId { get; set; }
         public decimal Amount { get; set; }

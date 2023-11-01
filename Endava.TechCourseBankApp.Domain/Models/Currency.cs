@@ -1,6 +1,6 @@
 ﻿using Endava.TechCourseBankApp.Domain.Common;
 
-namespace Endava.TechCourse.BankApp.Domain.Models
+namespace Endava.TechCourseBankApp.Domain.Models
 {
     public class Currency : BaseEntity
     {
@@ -9,5 +9,6 @@ namespace Endava.TechCourse.BankApp.Domain.Models
         public string CurrencyCode { get; set; }
 
         public decimal ChangeRate { get; set; }
+
     }
 }

@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MudBlazor.Services;
 
-namespace Endava.TechCourse.BankApp.Client
+namespace Endava.TechCourseBankApp.Client
 {
     public class Program
     {

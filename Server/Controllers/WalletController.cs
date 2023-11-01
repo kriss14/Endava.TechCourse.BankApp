@@ -2,6 +2,7 @@
 using Endava.TechCourse.BankApp.Infrastructure.Persistance;
 using Endava.TechCourse.BankApp.Shared;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Endava.TechCourse.BankApp.Server.Controllers
 {
@@ -37,26 +38,27 @@ namespace Endava.TechCourse.BankApp.Server.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetWallets()
+        [Route("getwallets")]
+        public async Task<List<WalletDTO>> GetWallets()
         {
-            var walletsDomain = _dbcontext.Wallets.ToList();
+            var wallets = await _dbcontext.Wallets.Include(x => x.Currency).ToListAsync();
 
-            var walletsDTO = new List<GetWalletDTO>(walletsDomain.Count);
+            var dtos = new List<WalletDTO>();
 
-            foreach (var walletDomain in walletsDomain)
+            foreach (var wallet in wallets)
             {
-                var walletDTO = new GetWalletDTO
+                var dto = new WalletDTO()
                 {
-                    Id = walletDomain.Id,
-                    CreateDate = walletDomain.TimeStamp,
-                    Type = walletDomain.Type,
-                    Amount = walletDomain.Amount
+                    Id = wallet.Id,
+                    Currency = wallet.Currency,
+                    Type = wallet.Type,
+                    Amount = wallet.Amount,
                 };
 
-                walletsDTO.Add(walletDTO);
+                dtos.Add(dto);
             }
 
-            return Ok(walletsDTO);
+            return dtos;
         }
 
         [HttpGet("{type}")]

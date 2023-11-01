@@ -2,7 +2,7 @@
 
 namespace Endava.TechCourse.BankApp.Shared
 {
-    public class GetWalletDTO
+    public class WalletDTO
     {
         public Guid Id { get; set; }
 

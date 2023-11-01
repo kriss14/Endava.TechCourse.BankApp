@@ -1,8 +1,8 @@
 ﻿using Endava.TechCourseBankApp.Domain.Common;
 
-namespace Endava.TechCourse.BankApp.Domain.Models
+namespace Endava.TechCourseBankApp.Domain.Models
 {
-    public class Report : BaseEntity
+    public class Report: BaseEntity
     {
         public int ReportId { get; set; }
         public string Title { get; set; }
@@ -10,4 +10,10 @@ namespace Endava.TechCourse.BankApp.Domain.Models
         public List<Transaction> Transactions { get; set; }
         public List<Payment> Payments { get; set; }
     }
+
+
+
+
+
+
 }

@@ -13,8 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Endava.TechCourseBankApp.Domain\Endava.TechCourse.BankApp.Domain.csproj" />
-    <ProjectReference Include="..\Shared\Endava.TechCourse.BankApp.Shared.csproj" />
+    <ProjectReference Include="..\Shared\Endava.TechCourseBankApp.Shared.csproj" />
   </ItemGroup>
 
 </Project>

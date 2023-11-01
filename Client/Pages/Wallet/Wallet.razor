@@ -37,7 +37,7 @@ else
 }
 
 @code {
-    private List<GetWalletDTO> wallets;
+    private List<WalletDTO> wallets;
     [Inject]
     private NavigationManager NavigationManager { get; set; }
 
@@ -56,6 +56,6 @@ else
 
     public async Task GetWallets()
     {
-        wallets = await this.httpClient.GetFromJsonAsync<List<GetWalletDTO>>("api/wallet/");
+        wallets = await this.httpClient.GetFromJsonAsync<List<WalletDTO>>("api/wallet/");
     }
 }
