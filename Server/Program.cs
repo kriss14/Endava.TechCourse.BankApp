@@ -1,3 +1,5 @@
+using Endava.TechCourse.BankApp.Application.Commands.AddCurrency;
+using Endava.TechCourse.BankApp.Application.Queries.GetWallets;
 using Endava.TechCourse.BankApp.Infrastructure;
 
 namespace Endava.TechCourse.BankApp
@@ -14,6 +16,13 @@ namespace Endava.TechCourse.BankApp
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
 
+            builder.Services.AddMediatR(config =>
+            {
+                config.RegisterServicesFromAssemblies(typeof(Program).Assembly);
+                config.RegisterServicesFromAssemblies(typeof(GetWalletsQuery).Assembly);
+                config.RegisterServicesFromAssemblies(typeof(AddCurrencyCommand).Assembly);
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -24,8 +33,6 @@ namespace Endava.TechCourse.BankApp
             else
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
             }
 
             app.UseBlazorFrameworkFiles();

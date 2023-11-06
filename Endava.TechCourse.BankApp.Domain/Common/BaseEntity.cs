@@ -3,6 +3,6 @@
     public class BaseEntity
     {
         public Guid Id { get; } = Guid.NewGuid();
-        public DateTime TimeStap { get; } = DateTime.Now;
+        public DateTime TimeStamp { get; } = DateTime.Now;
     }
 }
