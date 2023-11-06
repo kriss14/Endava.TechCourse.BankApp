@@ -1,24 +1,27 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="7.0.12" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.13">
+    <PackageReference Include="MediatR" Version="12.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.12" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="7.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.12">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\Client\Endava.TechCourse.BankApp.Client.csproj" />
-		<ProjectReference Include="..\Endava.TechCourse.BankApp.Infrastracture\Endava.TechCourse.BankApp.Infrastructure.csproj" />
-		<ProjectReference Include="..\Shared\Endava.TechCourse.BankApp.Shared.csproj" />
-	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Client\Endava.TechCourse.BankApp.Client.csproj" />
+    <ProjectReference Include="..\Endava.TechCource.BankApp.Application\Endava.TechCource.BankApp.Application.csproj" />
+    <ProjectReference Include="..\Endava.TechCourse.BankApp.Domain\Endava.TechCourse.BankApp.Domain.csproj" />
+    <ProjectReference Include="..\Endava.TechCourse.BankApp.Infrastructure\Endava.TechCourse.BankApp.Infrastructure.csproj" />
+    <ProjectReference Include="..\Shared\Endava.TechCourse.BankApp.Shared.csproj" />
+  </ItemGroup>
 
 
 </Project>

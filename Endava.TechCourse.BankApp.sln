@@ -1,22 +1,28 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.7.34202.233
+VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Endava.TechCourse.BankApp.Server", "Server\Endava.TechCourse.BankApp.Server.csproj", "{89ECD709-59DB-4AFD-9214-C1DE8C0E4A25}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Endava.TechCourse.BankApp.Client", "Client\Endava.TechCourse.BankApp.Client.csproj", "{15E3B994-5A4E-4F6F-898F-17E2B85658E0}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Endava.TechCourse.BankApp.Shared", "Shared\Endava.TechCourse.BankApp.Shared.csproj", "{808F116A-2DDD-4B79-A1C2-0BBE0C81C751}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Endava.TechCourse.BankApp.Domain", "Endava.TechCourse.BankApp.Domain\Endava.TechCourse.BankApp.Domain.csproj", "{937EBC55-5A73-4E32-89BA-7DB9E29FCE20}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Endava.TechCourse.BankApp.Infrastructure", "Endava.TechCourse.BankApp.Infrastracture\Endava.TechCourse.BankApp.Infrastructure.csproj", "{973652A5-7A75-4279-9C9B-4E6F047EA32C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Endava.TechCourse.BankApp.Server", "Server\Endava.TechCourse.BankApp.Server.csproj", "{3F9AF5CF-1A4E-4492-8797-8AA90BF0D4DF}"
 	ProjectSection(ProjectDependencies) = postProject
-		{937EBC55-5A73-4E32-89BA-7DB9E29FCE20} = {937EBC55-5A73-4E32-89BA-7DB9E29FCE20}
+		{E381F292-C90A-4F02-A02B-BF96050D058F} = {E381F292-C90A-4F02-A02B-BF96050D058F}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Endava.TechCourse.BankApp.Test", "Endava.TechCourse.BankApp.Test\Endava.TechCourse.BankApp.Test.csproj", "{3CC00295-25DD-4086-AD1B-37C5EBA671D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Endava.TechCourse.BankApp.Client", "Client\Endava.TechCourse.BankApp.Client.csproj", "{E950B998-CAA1-41C3-8CA5-1629C83CEA1A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Endava.TechCourse.BankApp.Shared", "Shared\Endava.TechCourse.BankApp.Shared.csproj", "{C6A2C4BD-A777-45F9-A29C-5A43A63EBC03}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Endava.TechCourse.BankApp.Domain", "Endava.TechCourse.BankApp.Domain\Endava.TechCourse.BankApp.Domain.csproj", "{8981074E-5200-4079-A51C-5AD30FDE4D8E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Endava.TechCourse.BankApp.Infrastructure", "Endava.TechCourse.BankApp.Infrastructure\Endava.TechCourse.BankApp.Infrastructure.csproj", "{8E1FC7DB-5087-475C-9012-0EE189A0E363}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Endava.TechCourse.BankApp.Tests", "Endava.TechCourse.BankApp.Tests\Endava.TechCourse.BankApp.Tests.csproj", "{906DAA8A-5F4C-457D-A7BA-53CA175E5A1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Endava.TechCource.BankApp.Application", "Endava.TechCource.BankApp.Application\Endava.TechCource.BankApp.Application.csproj", "{E381F292-C90A-4F02-A02B-BF96050D058F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8981074E-5200-4079-A51C-5AD30FDE4D8E} = {8981074E-5200-4079-A51C-5AD30FDE4D8E}
+		{8E1FC7DB-5087-475C-9012-0EE189A0E363} = {8E1FC7DB-5087-475C-9012-0EE189A0E363}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,35 +30,39 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{89ECD709-59DB-4AFD-9214-C1DE8C0E4A25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{89ECD709-59DB-4AFD-9214-C1DE8C0E4A25}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{89ECD709-59DB-4AFD-9214-C1DE8C0E4A25}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{89ECD709-59DB-4AFD-9214-C1DE8C0E4A25}.Release|Any CPU.Build.0 = Release|Any CPU
-		{15E3B994-5A4E-4F6F-898F-17E2B85658E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{15E3B994-5A4E-4F6F-898F-17E2B85658E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{15E3B994-5A4E-4F6F-898F-17E2B85658E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{15E3B994-5A4E-4F6F-898F-17E2B85658E0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{808F116A-2DDD-4B79-A1C2-0BBE0C81C751}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{808F116A-2DDD-4B79-A1C2-0BBE0C81C751}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{808F116A-2DDD-4B79-A1C2-0BBE0C81C751}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{808F116A-2DDD-4B79-A1C2-0BBE0C81C751}.Release|Any CPU.Build.0 = Release|Any CPU
-		{937EBC55-5A73-4E32-89BA-7DB9E29FCE20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{937EBC55-5A73-4E32-89BA-7DB9E29FCE20}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{937EBC55-5A73-4E32-89BA-7DB9E29FCE20}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{937EBC55-5A73-4E32-89BA-7DB9E29FCE20}.Release|Any CPU.Build.0 = Release|Any CPU
-		{973652A5-7A75-4279-9C9B-4E6F047EA32C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{973652A5-7A75-4279-9C9B-4E6F047EA32C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{973652A5-7A75-4279-9C9B-4E6F047EA32C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{973652A5-7A75-4279-9C9B-4E6F047EA32C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3CC00295-25DD-4086-AD1B-37C5EBA671D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3CC00295-25DD-4086-AD1B-37C5EBA671D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3CC00295-25DD-4086-AD1B-37C5EBA671D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3CC00295-25DD-4086-AD1B-37C5EBA671D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F9AF5CF-1A4E-4492-8797-8AA90BF0D4DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F9AF5CF-1A4E-4492-8797-8AA90BF0D4DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F9AF5CF-1A4E-4492-8797-8AA90BF0D4DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F9AF5CF-1A4E-4492-8797-8AA90BF0D4DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E950B998-CAA1-41C3-8CA5-1629C83CEA1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E950B998-CAA1-41C3-8CA5-1629C83CEA1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E950B998-CAA1-41C3-8CA5-1629C83CEA1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E950B998-CAA1-41C3-8CA5-1629C83CEA1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6A2C4BD-A777-45F9-A29C-5A43A63EBC03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6A2C4BD-A777-45F9-A29C-5A43A63EBC03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6A2C4BD-A777-45F9-A29C-5A43A63EBC03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6A2C4BD-A777-45F9-A29C-5A43A63EBC03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8981074E-5200-4079-A51C-5AD30FDE4D8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8981074E-5200-4079-A51C-5AD30FDE4D8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8981074E-5200-4079-A51C-5AD30FDE4D8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8981074E-5200-4079-A51C-5AD30FDE4D8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E1FC7DB-5087-475C-9012-0EE189A0E363}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E1FC7DB-5087-475C-9012-0EE189A0E363}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E1FC7DB-5087-475C-9012-0EE189A0E363}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E1FC7DB-5087-475C-9012-0EE189A0E363}.Release|Any CPU.Build.0 = Release|Any CPU
+		{906DAA8A-5F4C-457D-A7BA-53CA175E5A1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{906DAA8A-5F4C-457D-A7BA-53CA175E5A1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{906DAA8A-5F4C-457D-A7BA-53CA175E5A1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{906DAA8A-5F4C-457D-A7BA-53CA175E5A1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E381F292-C90A-4F02-A02B-BF96050D058F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E381F292-C90A-4F02-A02B-BF96050D058F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E381F292-C90A-4F02-A02B-BF96050D058F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E381F292-C90A-4F02-A02B-BF96050D058F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {637304DD-D7E2-49F7-ADE4-4E010E867862}
+		SolutionGuid = {360AEF5A-2DE8-4260-A3A2-6FE9A4FA8453}
 	EndGlobalSection
 EndGlobal
