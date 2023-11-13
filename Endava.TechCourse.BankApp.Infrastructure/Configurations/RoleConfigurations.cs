@@ -18,7 +18,8 @@ namespace Endava.TechCourse.BankApp.Infrastructure.Configurations
                     .Select(role => new IdentityRole<Guid>(role)
                     {
                         Id = Guid.NewGuid(),
-                        Name = role
+                        Name = role,
+                        NormalizedName = role.Normalize(),
                     })
                 .ToList();
             builder.HasData(roles);

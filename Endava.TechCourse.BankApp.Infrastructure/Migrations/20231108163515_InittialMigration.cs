@@ -3,28 +3,16 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace Endava.TechCourse.BankApp.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class AddIdentity : Migration
+    public partial class InittialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Wallets_Currencies_CurrencyId",
-                table: "Wallets");
-
-            migrationBuilder.AlterColumn<Guid>(
-                name: "CurrencyId",
-                table: "Wallets",
-                type: "uniqueidentifier",
-                nullable: false,
-                defaultValue: new Guid("00000000-0000-0000-0000-000000000000"),
-                oldClrType: typeof(Guid),
-                oldType: "uniqueidentifier",
-                oldNullable: true);
-
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -64,6 +52,20 @@ namespace Endava.TechCourse.BankApp.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Currencies",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CurrencyCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ChangeRate = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Currencies", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -172,6 +174,35 @@ namespace Endava.TechCourse.BankApp.Infrastructure.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Wallets",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CurrencyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Wallets", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Wallets_Currencies_CurrencyId",
+                        column: x => x.CurrencyId,
+                        principalTable: "Currencies",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { new Guid("3616f8c3-07de-43e3-9efb-75d10aa9ae7d"), null, "User", "User" },
+                    { new Guid("75c5ff69-b0b9-4ce9-a018-c50579079314"), null, "Admin", "Admin" }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -211,22 +242,15 @@ namespace Endava.TechCourse.BankApp.Infrastructure.Migrations
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_Wallets_Currencies_CurrencyId",
+            migrationBuilder.CreateIndex(
+                name: "IX_Wallets_CurrencyId",
                 table: "Wallets",
-                column: "CurrencyId",
-                principalTable: "Currencies",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                column: "CurrencyId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Wallets_Currencies_CurrencyId",
-                table: "Wallets");
-
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -243,25 +267,16 @@ namespace Endava.TechCourse.BankApp.Infrastructure.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Wallets");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
-            migrationBuilder.AlterColumn<Guid>(
-                name: "CurrencyId",
-                table: "Wallets",
-                type: "uniqueidentifier",
-                nullable: true,
-                oldClrType: typeof(Guid),
-                oldType: "uniqueidentifier");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Wallets_Currencies_CurrencyId",
-                table: "Wallets",
-                column: "CurrencyId",
-                principalTable: "Currencies",
-                principalColumn: "Id");
+            migrationBuilder.DropTable(
+                name: "Currencies");
         }
     }
 }

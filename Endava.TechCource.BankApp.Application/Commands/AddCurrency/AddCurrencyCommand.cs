@@ -2,7 +2,7 @@
 
 namespace Endava.TechCourse.BankApp.Application.Commands.AddCurrency
 {
-    public class AddCurrencyCommand : IRequest<CommandStatus>
+    public class AddWalletCommand : IRequest<CommandStatus>
     {
         public string Name { get; set; }
         public string CurrencyCode { get; set; }

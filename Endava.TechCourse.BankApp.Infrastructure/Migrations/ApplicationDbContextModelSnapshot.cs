@@ -166,13 +166,15 @@ namespace Endava.TechCourse.BankApp.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("7547811f-e218-4687-b824-fde4bb329ef4"),
-                            Name = "User"
+                            Id = new Guid("3616f8c3-07de-43e3-9efb-75d10aa9ae7d"),
+                            Name = "User",
+                            NormalizedName = "User"
                         },
                         new
                         {
-                            Id = new Guid("a67760e6-3a20-4cae-9174-7afd7933bdc5"),
-                            Name = "Admin"
+                            Id = new Guid("75c5ff69-b0b9-4ce9-a018-c50579079314"),
+                            Name = "Admin",
+                            NormalizedName = "Admin"
                         });
                 });
 

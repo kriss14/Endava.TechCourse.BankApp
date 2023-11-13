@@ -18,7 +18,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Endava.TechCourse.BankApp.I
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Endava.TechCourse.BankApp.Tests", "Endava.TechCourse.BankApp.Tests\Endava.TechCourse.BankApp.Tests.csproj", "{906DAA8A-5F4C-457D-A7BA-53CA175E5A1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Endava.TechCource.BankApp.Application", "Endava.TechCource.BankApp.Application\Endava.TechCource.BankApp.Application.csproj", "{E381F292-C90A-4F02-A02B-BF96050D058F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Endava.TechCource.BankApp.Application", "Endava.TechCource.BankApp.Application\Endava.TechCource.BankApp.Application.csproj", "{E381F292-C90A-4F02-A02B-BF96050D058F}"
 	ProjectSection(ProjectDependencies) = postProject
 		{8981074E-5200-4079-A51C-5AD30FDE4D8E} = {8981074E-5200-4079-A51C-5AD30FDE4D8E}
 		{8E1FC7DB-5087-475C-9012-0EE189A0E363} = {8E1FC7DB-5087-475C-9012-0EE189A0E363}

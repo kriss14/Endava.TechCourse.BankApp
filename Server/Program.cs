@@ -20,7 +20,7 @@ namespace Endava.TechCourse.BankApp
             {
                 config.RegisterServicesFromAssemblies(typeof(Program).Assembly);
                 config.RegisterServicesFromAssemblies(typeof(GetWalletsQuery).Assembly);
-                config.RegisterServicesFromAssemblies(typeof(AddCurrencyCommand).Assembly);
+                config.RegisterServicesFromAssemblies(typeof(AddWalletCommand).Assembly);
             });
 
             var app = builder.Build();
