@@ -1,6 +1,7 @@
 using Endava.TechCourse.BankApp.Application.Commands.AddCurrency;
 using Endava.TechCourse.BankApp.Application.Queries.GetWallets;
 using Endava.TechCourse.BankApp.Infrastructure;
+using Endava.TechCourse.BankApp.Server.Composition;
 
 namespace Endava.TechCourse.BankApp
 {
@@ -13,6 +14,7 @@ namespace Endava.TechCourse.BankApp
 
             // Add services to the container.
             builder.Services.AddInfrastructure(configuration);
+            builder.Services.AddJwtIdentity(configuration);
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
 
