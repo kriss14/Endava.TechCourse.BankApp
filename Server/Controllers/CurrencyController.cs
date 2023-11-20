@@ -45,7 +45,7 @@ namespace Endava.TechCourse.BankApp.Server.Controllers
         [HttpPost]
         public async Task<IActionResult> AddCurrency([FromBody] CurrencyDto currencyDTO)
         {
-            var command = new AddCurrencyCommand
+            var command = new AddWalletCommand
             {
                 Name = currencyDTO.Name,
                 CurrencyCode = currencyDTO.CurrencyCode,
