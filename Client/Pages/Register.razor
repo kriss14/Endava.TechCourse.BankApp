@@ -1,7 +1,9 @@
 ﻿@page "/register"
 @using Endava.TechCourse.BankApp.Server.Controllers;
+@inject AuthService authService
 @layout EmptyLayout
 @inject HttpClient httpClient
+@inject NavigationManager navigationManager
 <PageTitle>Endava .NET Tech Course</PageTitle>
 
 <MudGrid Class="justify-md-center">
@@ -15,13 +17,13 @@
             <MudCardContent Class="justify-md-center ">
                 <MudTextField @bind-Value="newUser.FirstName" T="string" Label="Nume" />
                 <MudTextField @bind-Value="newUser.LastName" T="string" Label="Prenume" />
-                <MudTextField @bind-Value="newUser.Username" T="string" Label="Username" />
+                <MudTextField @bind-Value="newUser.Username" T="string" Label="Nume de utilizator" />
                 <MudTextField @bind-Value="newUser.Email" T="string" Label="Email" />
                 <MudTextField @bind-Value="newUser.Password" T="string" Label="Parola" InputType="InputType.Password" />
             </MudCardContent>
         </MudCard>
         <MudPaper Class="pa-4 mt-4">
-            <MudButton OnClick=RegisterNewUser Variant="Variant.Filled" Color="Color.Secondary" DisableElevation="true" Class="mx-2">Inregistrare</MudButton>
+            <MudButton Variant="Variant.Filled" OnClick="RegisterNewUser" Color="Color.Secondary" DisableElevation="true" Class="mx-2">Inregistrare</MudButton>
             <MudButton Href="/login" Variant="Variant.Filled" Color="Color.Primary" DisableElevation="true">Autentificare</MudButton>
             <MudButton Href="/" Variant="Variant.Filled" Color="Color.Primary" DisableElevation="true" Class="mx-2">Acasa</MudButton>
         </MudPaper>
@@ -31,11 +33,24 @@
 
 @code {
     RegisterDto newUser = new();
-    public async Task RegisterNewUser()
+    string registerError = string.Empty;
+
+    protected override async Task OnInitializedAsync()
     {
-        await httpClient.PostAsJsonAsync("api/account/register", newUser);
-        newUser = new();
-        StateHasChanged();
+        var isAuthenticated = await authService.IsUserauthenticated();
+
+        if (isAuthenticated)
+            navigationManager.NavigateTo("");
     }
 
+    public async Task RegisterNewUser()
+    {
+        var result = await authService.Register(newUser);
+
+        if (result.Status)
+            navigationManager.NavigateTo("");
+
+        registerError = result.Message;
+        StateHasChanged();
+    }
 }

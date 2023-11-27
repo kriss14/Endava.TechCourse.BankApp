@@ -7,5 +7,6 @@ namespace Endava.TechCourse.BankApp.Application.Commands.CreateWallet
         public decimal Amount { get; set; }
         public string CurrencyCode { get; set; }
         public string Type { get; set; }
+        public Guid UserId { get; set; }
     }
 }

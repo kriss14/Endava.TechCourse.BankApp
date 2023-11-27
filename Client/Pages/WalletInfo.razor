@@ -1,0 +1,37 @@
+﻿@page "/wallet-info"
+@inject HttpClient httpClient
+@inject NavigationManager navManager;
+
+
+<h3>WalletInfo</h3>
+
+<MudTextField T="string" @bind-Value="stringId" Label="Wallet ID" />
+<MudButton Variant=Variant.Outlined Color=Color.Primary OnClick="(e => GetWallet(stringId))">Send</MudButton>
+
+
+@if(wallet == null)
+{
+    <p>Nothing to be displayed yet...</p>
+}else
+{
+    <MudText>Id: @wallet.WalletId</MudText>
+    <MudText>Amount: @wallet.Amount</MudText>
+    <MudText>Type: @wallet.Type</MudText>
+}
+
+@code {
+    public string stringId;
+    private Guid Id;
+    public GetWalletDto wallet;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+    }
+
+    public async Task GetWallet(string Id)
+    {
+        Guid id = Guid.Parse(stringId);
+        wallet = await this.httpClient.GetFromJsonAsync<GetWalletDto>("api/wallet/" + id.ToString());
+    }    
+}

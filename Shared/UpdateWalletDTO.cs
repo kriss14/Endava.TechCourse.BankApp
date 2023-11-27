@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Endava.TechCourse.BankApp.Shared
 {
-    public class UpdateWalletDTO
+    public class UpdateWalletDto
     {
         public decimal Amount { get; set; }
         public int Pincode { get; set; }

@@ -28,6 +28,9 @@ namespace Endava.TechCourse.BankApp.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("CanBeRemoved")
+                        .HasColumnType("bit");
+
                     b.Property<decimal>("ChangeRate")
                         .HasColumnType("decimal(18,2)");
 
@@ -40,6 +43,40 @@ namespace Endava.TechCourse.BankApp.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Currencies");
+                });
+
+            modelBuilder.Entity("Endava.TechCourse.BankApp.Domain.Models.Transaction", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ChangeRate")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid?>("CurrencyId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("DestinationWalletId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("SourceWalletId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("TransactionTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CurrencyId");
+
+                    b.ToTable("transactions");
                 });
 
             modelBuilder.Entity("Endava.TechCourse.BankApp.Domain.Models.User", b =>
@@ -123,11 +160,17 @@ namespace Endava.TechCourse.BankApp.Infrastructure.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<decimal>("ChangeRate")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<Guid>("CurrencyId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -166,13 +209,13 @@ namespace Endava.TechCourse.BankApp.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("3616f8c3-07de-43e3-9efb-75d10aa9ae7d"),
+                            Id = new Guid("cfa32ca8-16df-4a44-8176-a1d6947fc629"),
                             Name = "User",
                             NormalizedName = "User"
                         },
                         new
                         {
-                            Id = new Guid("75c5ff69-b0b9-4ce9-a018-c50579079314"),
+                            Id = new Guid("ced65ddd-c07a-41e0-bb6e-5088843aee47"),
                             Name = "Admin",
                             NormalizedName = "Admin"
                         });
@@ -279,6 +322,15 @@ namespace Endava.TechCourse.BankApp.Infrastructure.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("Endava.TechCourse.BankApp.Domain.Models.Transaction", b =>
+                {
+                    b.HasOne("Endava.TechCourse.BankApp.Domain.Models.Currency", "Currency")
+                        .WithMany()
+                        .HasForeignKey("CurrencyId");
+
+                    b.Navigation("Currency");
                 });
 
             modelBuilder.Entity("Endava.TechCourse.BankApp.Domain.Models.Wallet", b =>

@@ -31,7 +31,7 @@
                     <MudTd DataLabel="Nr">
                         @if(context.CanBeRemoved)
                         {
-                            <MudButton Color="Color.Error" OnClick="@((e) => DeleteCurrency(context.Id))">Sterge</MudButton>
+                            <MudButton Color="Color.Error" OnClick="@((e) => DeleteCurrency(context.Id.ToString()))">Sterge</MudButton>
                         }
                     </MudTd>
                 </RowTemplate>

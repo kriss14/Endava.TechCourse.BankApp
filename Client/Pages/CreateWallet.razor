@@ -1,0 +1,43 @@
+﻿@page "/create-wallet"
+@inject HttpClient httpClient
+@inject NavigationManager navManager
+
+<h3>Create Wallet</h3>
+<br />
+<br />
+<MudText>New Wallet: </MudText>
+<MudTextField T="string" @bind-Value="wallet.Type" Label="Type" />
+<MudTextField T="decimal" @bind-Value="wallet.Amount" Label="Amount" />
+<MudTextField T="string" @bind-Value="wallet.CurrencyCode" Label="Currency code"/>
+
+<MudButton Variant=Variant.Outlined Color=Color.Primary OnClick="AddWallet">Add</MudButton>
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <MudAlert>@errorMessage</MudAlert>
+}
+
+@code {
+    private CreateWalletDto wallet = new CreateWalletDto();
+
+    private string errorMessage;
+
+    public async Task AddWallet()
+    {
+        if (string.IsNullOrEmpty(wallet.Type))
+            errorMessage = "Wallet Type has to be populated.";
+        else if (wallet.Amount <= 0)
+            errorMessage = "Wallet Amount has to be populated with a value greater than zero.";
+        else
+        {
+            var result = await this.httpClient.PostAsJsonAsync("api/wallet", wallet);
+
+            if (!result.IsSuccessStatusCode)
+            {
+                errorMessage = "An error occured on server side. Please contact the administrator.";
+            }
+        }
+
+        navManager.NavigateTo("/wallets");
+    }
+}

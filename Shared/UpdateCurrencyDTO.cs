@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Endava.TechCourse.BankApp.Shared
 {
-    public class UpdateCurrencyDTO
+    public class UpdateCurrencyDto
     {
         public string Name { get; set; }
         public decimal ChangeRate { get; set; }

@@ -1,4 +1,5 @@
 using Endava.TechCourse.BankApp.Application.Commands.AddCurrency;
+using Endava.TechCourse.BankApp.Application.Commands.CreateWallet;
 using Endava.TechCourse.BankApp.Application.Queries.GetWallets;
 using Endava.TechCourse.BankApp.Infrastructure;
 using Endava.TechCourse.BankApp.Server.Composition;
@@ -22,7 +23,8 @@ namespace Endava.TechCourse.BankApp
             {
                 config.RegisterServicesFromAssemblies(typeof(Program).Assembly);
                 config.RegisterServicesFromAssemblies(typeof(GetWalletsQuery).Assembly);
-                config.RegisterServicesFromAssemblies(typeof(AddWalletCommand).Assembly);
+                config.RegisterServicesFromAssemblies(typeof(CreateWalletCommand).Assembly);
+                config.RegisterServicesFromAssemblies(typeof(AddCurrencyCommand).Assembly);
             });
 
             var app = builder.Build();
@@ -37,10 +39,15 @@ namespace Endava.TechCourse.BankApp
                 app.UseExceptionHandler("/Error");
             }
 
+            app.UseHttpsRedirection();
+
             app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.MapRazorPages();
             app.MapControllers();

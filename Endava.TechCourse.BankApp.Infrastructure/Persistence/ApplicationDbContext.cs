@@ -14,11 +14,13 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<Guid>, 
 
     public DbSet<Wallet> Wallets { get; set; }
     public DbSet<Currency> Currencies { get; set; }
+    public DbSet<Transaction> transactions { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Wallet>()
             .HasKey(e => e.Id);
+        modelBuilder.Entity<Transaction>().HasKey(w => w.Id);
 
         modelBuilder.Entity<Currency>()
             .HasKey(e => e.Id);

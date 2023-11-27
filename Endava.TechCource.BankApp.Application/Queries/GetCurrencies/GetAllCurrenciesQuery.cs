@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Endava.TechCourse.BankApp.Application.Queries.GetCurrencies
 {
-    public class GetCurrenciesQuery : IRequest<List<Currency>>
+    public class GetAllCurrenciesQuery : IRequest<IEnumerable<Currency>>
     {
     }
 }

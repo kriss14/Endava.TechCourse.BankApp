@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Endava.TechCourse.BankApp.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InittialMigration : Migration
+    public partial class initialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -61,7 +61,8 @@ namespace Endava.TechCourse.BankApp.Infrastructure.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CurrencyCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ChangeRate = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    ChangeRate = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CanBeRemoved = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -175,13 +176,38 @@ namespace Endava.TechCourse.BankApp.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "transactions",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CurrencyId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    ChangeRate = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TransactionTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    SourceWalletId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DestinationWalletId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_transactions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_transactions_Currencies_CurrencyId",
+                        column: x => x.CurrencyId,
+                        principalTable: "Currencies",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Wallets",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    CurrencyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    CurrencyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ChangeRate = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -199,8 +225,8 @@ namespace Endava.TechCourse.BankApp.Infrastructure.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { new Guid("3616f8c3-07de-43e3-9efb-75d10aa9ae7d"), null, "User", "User" },
-                    { new Guid("75c5ff69-b0b9-4ce9-a018-c50579079314"), null, "Admin", "Admin" }
+                    { new Guid("ced65ddd-c07a-41e0-bb6e-5088843aee47"), null, "Admin", "Admin" },
+                    { new Guid("cfa32ca8-16df-4a44-8176-a1d6947fc629"), null, "User", "User" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -243,6 +269,11 @@ namespace Endava.TechCourse.BankApp.Infrastructure.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_transactions_CurrencyId",
+                table: "transactions",
+                column: "CurrencyId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Wallets_CurrencyId",
                 table: "Wallets",
                 column: "CurrencyId");
@@ -265,6 +296,9 @@ namespace Endava.TechCourse.BankApp.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "transactions");
 
             migrationBuilder.DropTable(
                 name: "Wallets");

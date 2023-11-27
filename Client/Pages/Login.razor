@@ -22,7 +22,6 @@
             <MudButton Variant="Variant.Filled" OnClick="LoginUser" Color="Color.Secondary" DisableElevation="true" Class="mx-2">Autentificare</MudButton>
             <MudButton Href="/register" Variant="Variant.Filled" Color="Color.Primary" DisableElevation="true">Inregistrare</MudButton>
             <MudButton Href="/" Variant="Variant.Filled" Color="Color.Primary" DisableElevation="true" Class="mx-2">Acasa</MudButton>
-            <MudButton Href="/" Variant="Variant.Filled" OnClick="Logout" Color="Color.Primary" DisableElevation="true" Class="mx-2">LogOut</MudButton>
         </MudPaper>
     </MudItem>
 </MudGrid>
@@ -50,6 +49,4 @@
         loginError = result.Message;
         StateHasChanged();
     }
-    private async Task Logout() => await authService.Logout();
-
 }

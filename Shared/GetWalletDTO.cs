@@ -1,6 +1,6 @@
 ﻿namespace Endava.TechCourse.BankApp.Shared;
 
-public class GetWalletDTO
+public class GetWalletDto
 {
     public Guid WalletId { get; set; }
     public decimal Amount { get; set; }

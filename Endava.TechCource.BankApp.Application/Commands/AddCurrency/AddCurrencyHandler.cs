@@ -5,16 +5,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Endava.TechCourse.BankApp.Application.Commands.AddCurrency
 {
-    public class AddWalletHandler : IRequestHandler<AddWalletCommand, CommandStatus>
+    public class AddCurrencyHandler : IRequestHandler<AddCurrencyCommand, CommandStatus>
     {
         private readonly ApplicationDbContext context;
 
-        public AddWalletHandler(ApplicationDbContext context)
+        public AddCurrencyHandler(ApplicationDbContext context)
         {
             this.context = context;
         }
 
-        public async Task<CommandStatus> Handle(AddWalletCommand request, CancellationToken cancellationToken)
+        public async Task<CommandStatus> Handle(AddCurrencyCommand request, CancellationToken cancellationToken)
         {
             if (await context.Currencies.AnyAsync(x => x.Name == request.Name, default))
                 return CommandStatus.Failed("Exists currency with this name");
