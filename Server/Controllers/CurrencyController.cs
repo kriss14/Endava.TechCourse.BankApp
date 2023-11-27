@@ -1,9 +1,6 @@
-﻿using Endava.TechCource.BankApp.Application.Commands.DeleteCurrencyById;
-using Endava.TechCourse.BankApp.Application.Commands.AddCurrency;
-using Endava.TechCourse.BankApp.Application.Commands.UpdateCurrency;
-using Endava.TechCourse.BankApp.Application.Queries.GetCurrencies;
-using Endava.TechCourse.BankApp.Application.Queries.GetCurrencyById;
-using Endava.TechCourse.BankApp.Domain.Models;
+﻿using Endava.TechCourse.BankApp.Application.Commands.RemoveCurrency;
+using Endava.TechCourse.BankApp.Application.Commands.SaveCurrency;
+using Endava.TechCourse.BankApp.Application.Queries;
 using Endava.TechCourse.BankApp.Server.Common;
 using Endava.TechCourse.BankApp.Shared;
 using MediatR;
@@ -38,7 +35,7 @@ namespace Endava.TechCourse.BankApp.Server.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> SaveCurrency([FromBody] CurrencyDto dto)
         {
-            var saveCurrencyCommand = new UpdateCurrencyCommand()
+            var saveCurrencyCommand = new SaveCurrencyCommand()
             {
                 Name = dto.Name,
                 CurrencyCode = dto.CurrencyCode,
@@ -53,9 +50,9 @@ namespace Endava.TechCourse.BankApp.Server.Controllers
         [HttpPost]
         [Route("delete")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> RemoveCurrency([FromBody] Guid id)
+        public async Task<IActionResult> RemoveCurrency([FromBody] string id)
         {
-            var removeCurrencyCommnd = new DeleteCurrencyByIdCommand()
+            var removeCurrencyCommnd = new RemoveCurrencyCommand()
             {
                 Id = id
             };

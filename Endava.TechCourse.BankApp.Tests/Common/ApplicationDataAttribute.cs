@@ -1,4 +1,9 @@
-﻿namespace Endava.TechCourse.BankApp.Tests.Common
+﻿using AutoFixture.AutoNSubstitute;
+using AutoFixture.NUnit3;
+using EntityFrameworkCore.AutoFixture.Core;
+using EntityFrameworkCore.AutoFixture.Sqlite;
+
+namespace Endava.TechCourse.BankApp.Tests.Common
 {
     public class ApplicationDataAttribute : InlineAutoDataAttribute
     {

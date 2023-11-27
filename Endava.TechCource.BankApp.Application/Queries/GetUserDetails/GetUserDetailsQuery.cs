@@ -1,13 +1,7 @@
-﻿using Endava.TechCourse.BankApp.Application.Commands;
-using Endava.TechCourse.BankApp.Domain;
+﻿using Endava.TechCourse.BankApp.Domain.Dtos;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Endava.TechCource.BankApp.Application.Queries.GetUserDetails
+namespace Endava.TechCourse.BankApp.Application.Queries.GetUserDetails
 {
     public class GetUserDetailsQuery : IRequest<UserDetails>
     {

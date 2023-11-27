@@ -43,7 +43,7 @@
     {
         var result = await authService.Login(userInfo);
 
-        if (result.Status)
+        if(result.Status)
             navigationManager.NavigateTo("");
 
         loginError = result.Message;

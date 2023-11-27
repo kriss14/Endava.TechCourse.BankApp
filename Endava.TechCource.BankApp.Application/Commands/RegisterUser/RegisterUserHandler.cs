@@ -1,17 +1,11 @@
-﻿using Endava.TechCourse.BankApp.Application.Commands;
-using Endava.TechCourse.BankApp.Domain.Enums;
+﻿using Endava.TechCourse.BankApp.Domain.Enums;
 using Endava.TechCourse.BankApp.Domain.Models;
 using Endava.TechCourse.BankApp.Infrastructure.Persistence;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Endava.TechCource.BankApp.Application.Commands.RegisterUser
+namespace Endava.TechCourse.BankApp.Application.Commands.RegisterUser
 {
     public class RegisterUserHandler : IRequestHandler<RegisterUserCommand, CommandStatus>
     {
@@ -29,6 +23,7 @@ namespace Endava.TechCource.BankApp.Application.Commands.RegisterUser
 
         public async Task<CommandStatus> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
         {
+            var anyUser = await context.Users.AnyAsync(cancellationToken);
             var userExists = await context.Users.AnyAsync(user => user.Email == request.Email, cancellationToken);
 
             if (userExists)
@@ -47,7 +42,7 @@ namespace Endava.TechCource.BankApp.Application.Commands.RegisterUser
 
             IdentityResult roleResult;
 
-            if (await context.Users.AnyAsync(cancellationToken))
+            if (anyUser)
                 roleResult = await userManager.AddToRoleAsync(user, UserRole.User.ToString());
             else
                 roleResult = await userManager.AddToRoleAsync(user, UserRole.Admin.ToString());

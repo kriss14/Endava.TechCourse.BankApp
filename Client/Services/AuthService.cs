@@ -1,6 +1,5 @@
 ﻿using Blazored.LocalStorage;
 using Endava.TechCourse.BankApp.Client.Common;
-using Endava.TechCourse.BankApp.Server.Controllers;
 using Endava.TechCourse.BankApp.Shared;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Net.Http.Headers;

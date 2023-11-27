@@ -1,0 +1,39 @@
+﻿@page "/transactions/history"
+@layout MainLayout
+@inject HttpClient httpClient
+
+<PageTitle>Endava .NET Tech Course</PageTitle>
+
+<AuthorizeView Roles="User">
+<h3>TransactionsHistory</h3>
+<MudTable Items="@transactions" Hover="true" Breakpoint="Breakpoint.Sm">
+    <HeaderContent>
+        <MudTh>Portofel sursa</MudTh>
+        <MudTh>Portofel destinatie</MudTh>
+        <MudTh>Suma</MudTh>
+        <MudTh>Valuta</MudTh>
+        <MudTh>Data</MudTh>
+    </HeaderContent>
+    <RowTemplate Context="tableRow">
+            <MudTd DataLabel="Nr">@tableRow.SourceWalletId</MudTd>
+            <MudTd DataLabel="Sign">@tableRow.DestinationWalletId</MudTd>
+            <MudTd DataLabel="Name">@tableRow.Amount</MudTd>
+            <MudTd DataLabel="Name">@tableRow.Currency</MudTd>
+            <MudTd DataLabel="Name">@tableRow.TransactionTime</MudTd>
+    </RowTemplate>
+</MudTable>
+</AuthorizeView>
+
+@code {
+    IEnumerable<TransactionDto> transactions;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetTransactions();
+        StateHasChanged();
+
+        await base.OnInitializedAsync();
+    }
+
+    public async Task GetTransactions() => transactions = await this.httpClient.GetFromJsonAsync<List<TransactionDto>>("api/transactions");
+}

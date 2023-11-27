@@ -4,33 +4,24 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Endava.TechCourse.BankApp.Infrastructure.Persistence;
-
-public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
+namespace Endava.TechCourse.BankApp.Infrastructure.Persistence
 {
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+    public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
     {
-    }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        {
+        }
 
-    public DbSet<Wallet> Wallets { get; set; }
-    public DbSet<Currency> Currencies { get; set; }
-    public DbSet<Transaction> transactions { get; set; }
+        public DbSet<Wallet> Wallets { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<Currency> Currencies { get; set; }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.Entity<Wallet>()
-            .HasKey(e => e.Id);
-        modelBuilder.Entity<Transaction>().HasKey(w => w.Id);
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
 
-        modelBuilder.Entity<Currency>()
-            .HasKey(e => e.Id);
-
-        modelBuilder.Entity<Currency>()
-            .HasMany(e => e.Wallets)
-            .WithOne(e => e.Currency)
-            .HasForeignKey(e => e.CurrencyId)
-            .IsRequired();
-        base.OnModelCreating(modelBuilder);
-        modelBuilder.ApplyConfiguration(new RoleConfigurations());
+            modelBuilder.ApplyConfiguration(new RoleConfiguration());
+            modelBuilder.ApplyConfiguration(new CurrencyConfiguration());
+        }
     }
 }

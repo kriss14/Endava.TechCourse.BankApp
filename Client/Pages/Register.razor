@@ -1,9 +1,8 @@
 ﻿@page "/register"
-@using Endava.TechCourse.BankApp.Server.Controllers;
-@inject AuthService authService
 @layout EmptyLayout
-@inject HttpClient httpClient
+@inject AuthService authService
 @inject NavigationManager navigationManager
+
 <PageTitle>Endava .NET Tech Course</PageTitle>
 
 <MudGrid Class="justify-md-center">
@@ -47,7 +46,7 @@
     {
         var result = await authService.Register(newUser);
 
-        if (result.Status)
+        if(result.Status)
             navigationManager.NavigateTo("");
 
         registerError = result.Message;

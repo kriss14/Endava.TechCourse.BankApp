@@ -1,5 +1,4 @@
 ﻿using Microsoft.IdentityModel.Tokens;
-using Microsoft.VisualBasic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -13,17 +12,17 @@ namespace Endava.TechCourse.BankApp.Server.Common.JwtToken
         public JwtService(TokenSettings tokenSettings)
         {
             ArgumentNullException.ThrowIfNull(tokenSettings);
-
+            
             this.tokenSettings = tokenSettings;
         }
 
         public string CreateAuthToken(string userId, string username, string[] roles)
         {
             List<Claim> claims = new()
-        {
-            new(Constants.UserIdClaimName, userId),
-            new(Constants.UsernameClaimName, username)
-        };
+            {
+                new(Constants.UserIdClaimName, userId),
+                new(Constants.UsernameClaimName, username)
+            };
 
             claims.AddRange(roles.Select(x => new Claim(ClaimTypes.Role, x)).ToList());
 

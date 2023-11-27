@@ -13,6 +13,7 @@ namespace Endava.TechCourse.BankApp.Server.Common
             {
                 var dto = new CurrencyDto()
                 {
+                    Id = currency.Id.ToString(),
                     Name = currency.Name,
                     CurrencyCode = currency.CurrencyCode,
                     ChangeRate = currency.ChangeRate,
@@ -35,7 +36,7 @@ namespace Endava.TechCourse.BankApp.Server.Common
                 {
                     Id = wallet.Id.ToString(),
                     Type = wallet.Type,
-                    Currency = wallet.Currency.Name,
+                    Currency = wallet.Currency,
                     ChangeRate = wallet.ChangeRate,
                     Amount = wallet.Amount
                 };
@@ -54,10 +55,10 @@ namespace Endava.TechCourse.BankApp.Server.Common
             {
                 var dto = new TransactionDto()
                 {
-                    SourceWalletId = transaction.SourceWalletId,
-                    DestinationWalletId = transaction.DestinationWalletId,
+                    SourceWalletId = transaction.SourceWalletId.ToString(),
+                    DestinationWalletId = transaction.DestinationWalletId.ToString(),
                     Amount = transaction.Amount,
-                    Currency = transaction.Currency.Name,
+                    Currency = transaction.Currency,
                     TransactionTime = transaction.TransactionTime
                 };
 

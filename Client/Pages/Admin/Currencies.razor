@@ -1,7 +1,8 @@
 ﻿@page "/currencies"
-@layout AdminLayout
+@layout MainLayout
 @inject HttpClient httpClient
 
+<AuthorizeView Roles="Admin">
 <MudGrid>
     <MudItem md="7">
         @if (currencies is null || !currencies.Any())
@@ -23,15 +24,15 @@
                     <col />
                     <col />
                 </ColGroup>
-                <RowTemplate>
-                    <MudTd DataLabel="Nr">@context.Name</MudTd>
-                    <MudTd DataLabel="Nr">@context.CurrencyCode</MudTd>
-                    <MudTd DataLabel="Nr">@context.ChangeRate</MudTd>
+                <RowTemplate Context="tableRow">
+                        <MudTd DataLabel="Nr">@tableRow.Name</MudTd>
+                        <MudTd DataLabel="Nr">@tableRow.CurrencyCode</MudTd>
+                        <MudTd DataLabel="Nr">@tableRow.ChangeRate</MudTd>
                     
                     <MudTd DataLabel="Nr">
-                        @if(context.CanBeRemoved)
+                            @if (tableRow.CanBeRemoved)
                         {
-                            <MudButton Color="Color.Error" OnClick="@((e) => DeleteCurrency(context.Id.ToString()))">Sterge</MudButton>
+                                <MudButton Color="Color.Error" OnClick="@((e) => DeleteCurrency(tableRow.Id))">Sterge</MudButton>
                         }
                     </MudTd>
                 </RowTemplate>
@@ -78,6 +79,7 @@
         </MudGrid>
     </MudItem>
 </MudGrid>
+</AuthorizeView>
 
 @code {
     private IEnumerable<CurrencyDto> currencies;

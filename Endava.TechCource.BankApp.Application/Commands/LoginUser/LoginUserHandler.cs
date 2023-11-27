@@ -1,14 +1,8 @@
-﻿using Endava.TechCourse.BankApp.Application.Commands;
-using Endava.TechCourse.BankApp.Domain.Models;
+﻿using Endava.TechCourse.BankApp.Domain.Models;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Endava.TechCource.BankApp.Application.Commands.LoginUser
+namespace Endava.TechCourse.BankApp.Application.Commands.LoginUser
 {
     public class LoginUserHandler : IRequestHandler<LoginUserCommand, CommandStatus>
     {

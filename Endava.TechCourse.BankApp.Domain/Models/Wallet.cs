@@ -6,9 +6,7 @@ namespace Endava.TechCourse.BankApp.Domain.Models
     {
         public string Type { get; set; } = "Portofel digital";
         public decimal Amount { get; set; } = new Random().Next(50, 300);
-        public Guid CurrencyId { get; set; }
-        public Currency Currency { get; set; }
+        public string Currency { get; set; }
         public decimal ChangeRate { get; set; }
-        public Guid UserId { get; set; }
     }
 }

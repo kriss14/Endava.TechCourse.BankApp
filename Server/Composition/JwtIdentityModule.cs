@@ -1,4 +1,5 @@
-﻿using Endava.TechCourse.BankApp.Server.Common.JwtToken;
+﻿using Endava.TechCourse.BankApp.Server.Common;
+using Endava.TechCourse.BankApp.Server.Common.JwtToken;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;

@@ -4,12 +4,11 @@ namespace Endava.TechCourse.BankApp.Shared
 {
     public class TransactionDto
     {
-        public Guid SourceWalletId { get; set; }
-        public Guid DestinationWalletId { get; set; }
-        public string Description { get; set; }
+        public string Id { get; set; }
+        public string SourceWalletId { get; set; }
+        public string DestinationWalletId { get; set; }
         public decimal Amount { get; set; }
         public string Currency { get; set; }
-        public Guid CurrencyId { get; set; }
         public DateTime TransactionTime { get; set; }
     }
 }

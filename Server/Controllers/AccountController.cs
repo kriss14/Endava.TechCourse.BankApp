@@ -1,43 +1,43 @@
-﻿using Azure;
-using Endava.TechCource.BankApp.Application.Commands.LoginUser;
-using Endava.TechCource.BankApp.Application.Commands.RegisterUser;
-using Endava.TechCource.BankApp.Application.Queries.GetUserDetails;
+﻿using Endava.TechCourse.BankApp.Application.Commands.LoginUser;
+using Endava.TechCourse.BankApp.Application.Commands.RegisterUser;
+using Endava.TechCourse.BankApp.Application.Queries.GetUserDetails;
+using Endava.TechCourse.BankApp.Server.Common;
 using Endava.TechCourse.BankApp.Server.Common.JwtToken;
 using Endava.TechCourse.BankApp.Shared;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Endava.TechCourse.BankApp.Server.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/account")]
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private readonly IMediator mediator;
         private readonly JwtService jwtService;
+        private readonly IMediator mediator;
 
-        public AccountController(IMediator mediator,JwtService jwtService)
+        public AccountController(JwtService jwtService, IMediator mediator)
         {
+            ArgumentNullException.ThrowIfNull(jwtService);
             ArgumentNullException.ThrowIfNull(mediator);
-            this.mediator = mediator;
+
             this.jwtService = jwtService;
+            this.mediator = mediator;
         }
 
-        [HttpPost]
-        [Route("register")]
-        public async Task<IActionResult> Register([FromBody] RegisterDto register)
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] RegisterDto dto)
         {
-            var registerUserCommand = new RegisterUserCommand()
+            var registerUseCommand = new RegisterUserCommand()
             {
-                Username = register.Username,
-                FirstName = register.FirstName,
-                LastName = register.LastName,
-                Password = register.Password,
-                Email = register.Email
+                Username = dto.Username,
+                FirstName = dto.FirstName,
+                LastName = dto.LastName,
+                Password = dto.Password,
+                Email = dto.Email
             };
 
-            var result = await mediator.Send(registerUserCommand);
+            var result = await mediator.Send(registerUseCommand);
 
             return result.IsSuccessful ? Ok() : BadRequest(new { result.Error });
         }
@@ -60,6 +60,7 @@ namespace Endava.TechCourse.BankApp.Server.Controllers
             {
                 Username = dto.Username
             };
+
             var userDetails = await mediator.Send(userDetailsQuery);
 
             string jwtToken = jwtService.CreateAuthToken(userDetails.Id, userDetails.Username, userDetails.Roles);

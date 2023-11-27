@@ -2,7 +2,6 @@
 {
     public class BaseEntity
     {
-        public Guid Id { get; } = Guid.NewGuid();
-        public DateTime TimeStamp { get; } = DateTime.Now;
+        public Guid Id { get; set; } = Guid.NewGuid();
     }
 }

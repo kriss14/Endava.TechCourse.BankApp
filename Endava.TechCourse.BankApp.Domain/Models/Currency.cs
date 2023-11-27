@@ -8,6 +8,5 @@ namespace Endava.TechCourse.BankApp.Domain.Models
         public string CurrencyCode { get; set; }
         public decimal ChangeRate { get; set; }
         public bool CanBeRemoved { get; set; } = true;
-        public List<Wallet> Wallets { get; set; } = new List<Wallet>();
     }
 }
